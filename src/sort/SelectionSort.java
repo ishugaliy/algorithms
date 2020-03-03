@@ -1,6 +1,6 @@
 package sort;
 
-import datatype.SimpleAlgoUtils;
+import datatype.AlgoUtils;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -30,7 +30,7 @@ public class SelectionSort {
     public static int[] selectionSort(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             int minIdx = findMinIdx(arr, i);
-            SimpleAlgoUtils.swap(arr, i, minIdx);
+            AlgoUtils.swap(arr, i, minIdx);
         }
         return arr;
     }

@@ -1,9 +1,9 @@
-package datatype;
+package datatype.rsq;
 
 import java.util.Arrays;
 
 // Sharding range sum query
-public final class SRSQ implements IRSQ {
+public final class SRSQ implements RSQ {
 
     private final int[] src;
     private final int shardSize;

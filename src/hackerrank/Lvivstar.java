@@ -1,7 +1,7 @@
 package hackerrank;
 
-import datatype.IRSQ;
-import datatype.SRSQ;
+import datatype.rsq.RSQ;
+import datatype.rsq.SRSQ;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -42,7 +42,7 @@ public class Lvivstar {
     }
 
     private void execute(int[] stations, String[] cmds) {
-        IRSQ rsq = new SRSQ(stations);
+        RSQ rsq = new SRSQ(stations);
         for (String cmd : cmds) {
             String[] args = cmd.split(" ");
             int startIdx = Integer.parseInt(args[1]) - 1;

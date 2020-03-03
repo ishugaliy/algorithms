@@ -1,8 +1,8 @@
 package datatype;
 
-public final class SimpleAlgoUtils {
+public final class AlgoUtils {
 
-    private SimpleAlgoUtils() { }
+    private AlgoUtils() { }
 
     public static void swap(int[] arr, int idx1, int idx2) {
         int tmp = arr[idx1];

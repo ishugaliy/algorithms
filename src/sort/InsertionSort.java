@@ -1,6 +1,6 @@
 package sort;
 
-import datatype.SimpleAlgoUtils;
+import datatype.AlgoUtils;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -38,10 +38,9 @@ public class InsertionSort {
     // O(n^2) solution
     private static int[] insertionSort(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
-
             for (int j = i; j > 0; j--) {
                 if (arr[j - 1] > arr[j]) {
-                    SimpleAlgoUtils.swap(arr, j, j - 1);
+                    AlgoUtils.swap(arr, j, j - 1);
                 }
             }
         }

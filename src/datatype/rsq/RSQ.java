@@ -1,7 +1,7 @@
-package datatype;
+package datatype.rsq;
 
-// Interface range sum query
-public interface IRSQ {
+// Range sum query
+public interface RSQ {
 
     void increment(int idx);
     void decrement(int idx);
