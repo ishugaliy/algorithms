@@ -12,7 +12,7 @@ public class InsertionSort {
         int[] arr2 = {1};
         int[] arr3 = {0, 0, 1000000, -1000001};
         int[] arr4 = {103, 865, 7732, 2628, 5481, 1874, 5771, 7095, 5467, 9818};
-        int[] arr5 = new int[50_000];
+        int[] arr5 = new int[100_000];
         Random random = new Random();
         for (int i = 0; i < arr5.length; i++) {
             arr5[i] = random.nextInt();
@@ -25,18 +25,18 @@ public class InsertionSort {
         long start = System.currentTimeMillis();
         insertionSort(Arrays.copyOf(arr5, arr5.length));
         System.out.println((float) (System.currentTimeMillis() - start) / 1000 + " sec.");
-
+//
         System.out.println("binary insertion sort: " + Arrays.toString(binaryInsertionSort(Arrays.copyOf(arr1, arr1.length))));
         System.out.println("binary insertion sort: " + Arrays.toString(binaryInsertionSort(Arrays.copyOf(arr2, arr2.length))));
         System.out.println("binary insertion sort: " + Arrays.toString(binaryInsertionSort(Arrays.copyOf(arr3, arr3.length))));
         System.out.println("binary insertion sort: " + Arrays.toString(binaryInsertionSort(Arrays.copyOf(arr4, arr4.length))));
         start = System.currentTimeMillis();
-        binaryInsertionSort(Arrays.copyOf(arr5, arr5.length));
+        int[] insArr = binaryInsertionSort(Arrays.copyOf(arr5, arr5.length));
         System.out.println((float) (System.currentTimeMillis() - start) / 1000 + " sec.");
     }
 
     // O(n^2) solution
-    private static int[] insertionSort(int[] arr) {
+    public static int[] insertionSort(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
             for (int j = i; j > 0; j--) {
                 if (arr[j - 1] > arr[j]) {
@@ -48,7 +48,7 @@ public class InsertionSort {
     }
 
     // O(n log n) solution
-    private static int[] binaryInsertionSort(int[] arr) {
+    public static int[] binaryInsertionSort(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
             int pos = findPosition(arr, arr[i], i); // binary search
             int v = arr[i];
