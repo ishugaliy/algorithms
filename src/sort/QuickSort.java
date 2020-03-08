@@ -22,6 +22,10 @@ public class QuickSort {
         return _sort(arr, 0, arr.length - 1);
     }
 
+    public static int[] sort(int[] arr, int left, int right) {
+        return _sort(arr, left, right);
+    }
+
     private static int[] _sort(int[] arr, int left, int right) {
         if (left < right) {
             int i = left, j = right;

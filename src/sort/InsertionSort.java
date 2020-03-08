@@ -12,11 +12,7 @@ public class InsertionSort {
         int[] arr2 = {1};
         int[] arr3 = {0, 0, 1000000, -1000001};
         int[] arr4 = {103, 865, 7732, 2628, 5481, 1874, 5771, 7095, 5467, 9818};
-        int[] arr5 = new int[100_000];
-        Random random = new Random();
-        for (int i = 0; i < arr5.length; i++) {
-            arr5[i] = random.nextInt();
-        }
+        int[] arr5 = AlgoUtils.generateArray(100_000);
 
         System.out.println("insertion sort: " + Arrays.toString(insertionSort(Arrays.copyOf(arr1, arr1.length))));
         System.out.println("insertion sort: " + Arrays.toString(insertionSort(Arrays.copyOf(arr2, arr2.length))));
@@ -25,13 +21,13 @@ public class InsertionSort {
         long start = System.currentTimeMillis();
         insertionSort(Arrays.copyOf(arr5, arr5.length));
         System.out.println((float) (System.currentTimeMillis() - start) / 1000 + " sec.");
-//
+
         System.out.println("binary insertion sort: " + Arrays.toString(binaryInsertionSort(Arrays.copyOf(arr1, arr1.length))));
         System.out.println("binary insertion sort: " + Arrays.toString(binaryInsertionSort(Arrays.copyOf(arr2, arr2.length))));
         System.out.println("binary insertion sort: " + Arrays.toString(binaryInsertionSort(Arrays.copyOf(arr3, arr3.length))));
         System.out.println("binary insertion sort: " + Arrays.toString(binaryInsertionSort(Arrays.copyOf(arr4, arr4.length))));
         start = System.currentTimeMillis();
-        int[] insArr = binaryInsertionSort(Arrays.copyOf(arr5, arr5.length));
+        binaryInsertionSort(Arrays.copyOf(arr5, arr5.length));
         System.out.println((float) (System.currentTimeMillis() - start) / 1000 + " sec.");
     }
 

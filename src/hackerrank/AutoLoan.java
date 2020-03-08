@@ -10,16 +10,17 @@ public class AutoLoan {
         System.out.println("expected: 0.000000000000133 actual: " + findInterest(6800.00, 100.00, 68));
         System.out.println("expected: 9.562054624583681 actual: " + findInterest(2000.00, 510.00, 4));
         System.out.println("expected: 7.687856394581649 actual: " + findInterest(15000.00, 364.00, 48));
-//        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-//            String[] params = reader.readLine().split(" ");
-//            double price = Double.parseDouble(params[0]);
-//            double payment = Double.parseDouble(params[1]);
-//            int months = Integer.parseInt(params[2]);
-//            // algorithm
-//            findInterest(price, payment, months);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            String[] params = reader.readLine().split(" ");
+            double price = Double.parseDouble(params[0]);
+            double payment = Double.parseDouble(params[1]);
+            int months = Integer.parseInt(params[2]);
+            // algorithm
+            findInterest(price, payment, months);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 //     Month | + Interest | - Payment | = Balance

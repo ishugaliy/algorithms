@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 // https://www.facebook.com/hackercup/problem/1611251319125133/
-public class Fb_LaundroMatt {
+public class FB_LaundroMatt {
 
     // L N M D
     private static final String[] testCases = {
@@ -65,10 +65,10 @@ public class Fb_LaundroMatt {
             WashMachine wm = washQueue.poll();
             if (l-- > 0) {
                 wm.wash(washQueue);
-                visitTime = wm.endTime + d;
+                visitTime = wm.endTime;
             }
         }
-        return visitTime;
+        return visitTime + d;
     }
 
     private static int[] parseWashingTime(String str) {
