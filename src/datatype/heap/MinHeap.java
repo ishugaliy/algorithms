@@ -57,7 +57,7 @@ public class MinHeap implements Heap {
 
     protected void siftUp(int idx) {
         int parent = idx / 2;
-        while(idx > 1 && arr[parent] > arr[idx]) {
+        while (idx > 1 && arr[parent] > arr[idx]) {
             swap(parent, idx);
             idx = parent;
             parent = idx / 2;
