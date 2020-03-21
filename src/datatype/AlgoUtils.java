@@ -24,4 +24,13 @@ public final class AlgoUtils {
         }
         return arr;
     }
+
+    public static boolean contains(int[] arr, int v) {
+        for (int value : arr) {
+            if (v == value) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
