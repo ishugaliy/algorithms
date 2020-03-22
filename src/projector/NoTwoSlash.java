@@ -10,16 +10,16 @@ package projector;
  * <p>
  * <p>
  * def noTwoSlash(url: str):
- * _list = list(url)
- * i = 1
- * while i < len(_list):
- * if (_list[i-1] == '/') and (_list[i] == '/'):
- * for y in range(i+1, len(_list)):
- * _list[y-1] = _list[y]
- * _list = _list[:-1]
- * else:
- * i += 1
- * return ''.join(_list)
+ *      _list = list(url)
+ *      i = 1
+ *      while i < len(_list):
+ *          if (_list[i-1] == '/') and (_list[i] == '/'):
+ *              for y in range(i+1, len(_list)):
+ *                    _list[y-1] = _list[y]
+ *                    _list = _list[:-1]
+ *          else:
+ *              i += 1
+ *      return ''.join(_list)
  */
 
 public class NoTwoSlash {

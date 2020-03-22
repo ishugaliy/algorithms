@@ -1,4 +1,4 @@
-package projector;
+package recursion;
 
 import datatype.AlgoUtils;
 
@@ -10,8 +10,8 @@ public class Combinations {
         int[] src = {1, 2, 3};
         int k = 3; // length of the combination
 
-        System.out.println("---COMBINATION WITH REPETITION---");
-        combinationWithRepetition(src, k, new int[k], 0);
+        System.out.println("---REPETITION---");
+        repetition(src, k, new int[k], 0);
         System.out.println();
 
         System.out.println("---PERMUTATION---");
@@ -25,7 +25,7 @@ public class Combinations {
     }
 
     /**
-     * [РАЗМЕЩЕНИЕ]
+     * [РАЗМЕЩЕНИЕ C ПОВТОРЕНИЕМ]
      * Print all {k} size combinations with repetition from src numbers
      *
      * @param src - available numbers
@@ -33,11 +33,11 @@ public class Combinations {
      * @param c   - current combination
      * @param s   - current size of combination, 0 for first call
      */
-    public static void combinationWithRepetition(int[] src, int k, int[] c, int s) {
+    public static void repetition(int[] src, int k, int[] c, int s) {
         if (s < k) {
             for (int v : src) {
                 c[s] = v;
-                combinationWithRepetition(src, k, c, s + 1);
+                repetition(src, k, c, s + 1);
             }
         } else {
             System.out.println(Arrays.toString(c));
