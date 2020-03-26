@@ -25,7 +25,7 @@ public class Combinations {
     }
 
     /**
-     * [РАЗМЕЩЕНИЕ C ПОВТОРЕНИЕМ]
+     * [РАЗМЕЩЕНИЕ C ПОВТОРЕНИЕМ] n^k
      * Print all {k} size combinations with repetition from src numbers
      *
      * @param src - available numbers
@@ -45,7 +45,7 @@ public class Combinations {
     }
 
     /**
-     * [ПЕРЕСТАНОВКА]
+     * [ПЕРЕСТАНОВКА] N!
      * Print all {k} size combinations with permutation from src numbers
      *
      * @param src - available numbers
