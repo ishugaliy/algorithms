@@ -14,21 +14,21 @@ public class RGBStreet {
         System.out.println(countExpenses(new int[][]{{26, 40, 83}, {49, 60, 57}, {13, 89, 99}}));               // 96
         System.out.println(countExpenses(new int[][]{{30, 19, 5}, {64, 77, 64}, {15, 19, 97}, {4, 71, 57}, {90, 86, 84}, {93, 32, 91}}));    // 208
 
-//        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-//            int housesCount = Integer.parseInt(reader.readLine());
-//            int[][] costs = new int[housesCount][3];
-//            for (int i = 0; i < housesCount; i++) {
-//                costs[i] = Arrays
-//                        .stream(reader.readLine().split(" "))
-//                        .mapToInt(Integer::parseInt)
-//                        .toArray();
-//            }
-//
-//            // algorithm
-//            System.out.println(countExpenses(costs));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            int housesCount = Integer.parseInt(reader.readLine());
+            int[][] costs = new int[housesCount][3];
+            for (int i = 0; i < housesCount; i++) {
+                costs[i] = Arrays
+                        .stream(reader.readLine().split(" "))
+                        .mapToInt(Integer::parseInt)
+                        .toArray();
+            }
+
+            // algorithm
+            System.out.println(countExpenses(costs));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
