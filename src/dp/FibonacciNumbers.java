@@ -2,7 +2,7 @@ package dp;
 
 public class FibonacciNumbers {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         System.out.println(fib(3, new long[4])); // 3
         System.out.println(fib(4, new long[5])); // 5
         System.out.println(fib(5, new long[6])); // 8
@@ -13,9 +13,7 @@ public class FibonacciNumbers {
     }
 
     public static long fib(int n, long[] c) {
-        if (c[n] > 0) {
-            return c[n];
-        }
+        if (c[n] > 0) return c[n];
         if (n <= 2) {
             c[n] = n;
             return n;
