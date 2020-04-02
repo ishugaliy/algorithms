@@ -59,7 +59,7 @@ public class Combinations {
                 if (!AlgoUtils.contains(c, src[i])) {
                     c[s] = src[i];                     // # CHOOSE
                     permutation(src, k, c, s + 1);  // # EXPLORE
-                    c[s] = 0;                          // # UN-CHOOSE
+                    c[s] = 0;                          // # UN-CHOOSE  (Backtracking)
                 }
             }
         } else {
