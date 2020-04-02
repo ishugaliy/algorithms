@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.PriorityQueue;
 
 // https://www.hackerrank.com/contests/projector-algo-base-7-hw-4-xyzc/challenges/products-matrix
 public class ProductsMatrix {
