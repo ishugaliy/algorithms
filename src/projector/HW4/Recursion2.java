@@ -21,13 +21,13 @@ public class Recursion2 {
         if (bars.length == 1) return bars[0] <= bagSize ? bars[0] : 0;
 
         int firstBar = bars[0];
-        int[] restBars = Arrays.copyOfRange(bars, 1, bars.length);
+        int[] barsLeft = Arrays.copyOfRange(bars, 1, bars.length);
         if (firstBar <= bagSize) {
             return Math.max(
-                    maxBarsWeightInBag(restBars, bagSize),
-                    maxBarsWeightInBag(restBars, bagSize - firstBar) + firstBar);
+                    maxBarsWeightInBag(barsLeft, bagSize),
+                    maxBarsWeightInBag(barsLeft, bagSize - firstBar) + firstBar);
         } else {
-            return maxBarsWeightInBag(restBars, bagSize);
+            return maxBarsWeightInBag(barsLeft, bagSize);
         }
     }
 

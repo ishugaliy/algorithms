@@ -1,5 +1,9 @@
 package projector;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * # Існує популярний веб-сервер задача якого прибирати зайві символи "/".
  * # Наприклад, рядок "/page1///page2////page3/test.html" має стиснутись до "/page1/page2/page3/test.html"
@@ -24,6 +28,15 @@ package projector;
 
 public class NoTwoSlash {
 
+    public static void main(String[] args) {
+        System.out.println(noTwoSlash("/page1///page2////page3/test.html"));
+        System.out.println(noTwoSlash("///////page1///page2////page3/test./as////"));
+        System.out.println(noTwoSlash("a/b/c"));
+        System.out.println(noTwoSlash("///"));
+        System.out.println(noTwoSlash("a"));
+        System.out.println(noTwoSlash(""));
+    }
+
     public static String noTwoSlash(String url) {
         char[] chars = new char[url.length()];
         int count = 0;
@@ -33,15 +46,6 @@ public class NoTwoSlash {
             }
         }
         return new String(chars, 0, count);
-    }
-
-    public void main(String[] args) {
-        System.out.println(noTwoSlash("/page1///page2////page3/test.html"));
-        System.out.println(noTwoSlash("///////page1///page2////page3/test./as////"));
-        System.out.println(noTwoSlash("a/b/c"));
-        System.out.println(noTwoSlash("///"));
-        System.out.println(noTwoSlash("a"));
-        System.out.println(noTwoSlash(""));
     }
 }
 
