@@ -43,11 +43,37 @@ public class Palindrome {
         System.out.println(isListPalindrome(head));// false
     }
 
-    // TODO: implement another solution
-    // not rally good solution, it can be done without sum variable, with has drawbacks
-    // go to the middle with two pointer and then just compare first and last element,
-    // each time go to the last element, and after comparison cut it (next = null)
     public static boolean isListPalindrome(ListNode<Integer> l) {
+        ListNode<Integer> mid = l; // mid pointer
+        ListNode<Integer> end = l; // end pointer
+
+        // in the end of this loop, mid pointer will be in the middle of the list
+        while (mid.next != null && end.next != null && end.next.next != null) {
+            end = end.next.next;
+            mid = mid.next;
+        }
+        if (end.next != null && mid.next != null) {
+            mid = mid.next;
+            end = end.next;
+        }
+
+        ListNode<Integer> left = l;    // left pointer
+        ListNode<Integer> right = end; // right pointer
+        while (left != right) {
+            if (!left.value.equals(right.value)) {
+                return false;
+            }
+            left = left.next;
+            right = mid;
+            while (right.next != null && right.next.next != null) {
+                right = right.next;
+            }
+            right.next = null;
+        }
+        return true;
+    }
+
+    public static boolean isListPalindrome_2(ListNode<Integer> l) {
         ListNode<Integer> p1 = l;
         ListNode<Integer> p2 = l;
 
