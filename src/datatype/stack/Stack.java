@@ -1,9 +1,9 @@
 package datatype.stack;
 
-public interface Stack {
-
-    void push(int v);
-    int pop();
-    int peek();
+public interface Stack<T> {
+    void push(T v);
+    T pop();
+    T peek();
     int size();
+    boolean isEmpty();
 }

@@ -1,6 +1,6 @@
 package datatype.stack;
 
-public class MinStack implements Stack {
+public class MinStack implements Stack<Integer> {
 
     private Entry[] arr;
     private int size = 0;
@@ -14,20 +14,20 @@ public class MinStack implements Stack {
     }
 
     @Override
-    public void push(int x) {
+    public void push(Integer x) {
         grow();
         Entry e = Entry.of(x, findMin(x));
         arr[size++] = e;
     }
 
     @Override
-    public int pop() {
+    public Integer pop() {
         assertSize();
         return arr[--size].getValue();
     }
 
     @Override
-    public int peek() {
+    public Integer peek() {
         assertSize();
         return arr[size - 1].getValue();
     }
@@ -62,6 +62,11 @@ public class MinStack implements Stack {
         }
     }
 
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
     private static class Entry {
         private int value;
         private int min;
@@ -74,11 +79,9 @@ public class MinStack implements Stack {
         public static Entry of(int value, int min) {
             return new Entry(value, min);
         }
-
         public int getValue() {
             return value;
         }
-
         public int getMin() {
             return min;
         }
