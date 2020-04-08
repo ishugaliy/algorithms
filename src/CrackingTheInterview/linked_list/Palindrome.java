@@ -23,7 +23,7 @@ public class Palindrome {
     public static void main(String[] args) {
         // Case 1
         ListNode<Integer> head = new ListNode<>(1);
-        System.out.println(isListPalindrome(head)); // true
+        System.out.println(isListPalindrome_2(head)); // true
 
         // Case 2
         head.next = new ListNode<>(2);
@@ -40,7 +40,7 @@ public class Palindrome {
         head.next = new ListNode<>(2);
         head.next.next = new ListNode<>(1);
         head.next.next.next = new ListNode<>(1);
-        System.out.println(isListPalindrome(head));// false
+        System.out.println(isListPalindrome_2(head));// false
     }
 
     public static boolean isListPalindrome(ListNode<Integer> l) {
