@@ -28,13 +28,13 @@ public class Palindrome {
         // Case 2
         head.next = new ListNode<>(2);
         head.next.next = new ListNode<>(3);
-        System.out.println(isListPalindrome(head)); // false
+        System.out.println(isListPalindrome_2(head)); // false
 
         // Case 3
         head.next = new ListNode<>(2);
         head.next.next = new ListNode<>(2);
         head.next.next.next = new ListNode<>(1);
-        System.out.println(isListPalindrome(head));// true
+        System.out.println(isListPalindrome_2(head));// true
 
         // Case 3
         head.next = new ListNode<>(2);
@@ -73,26 +73,30 @@ public class Palindrome {
         return true;
     }
 
+    // Solution O(n) with polynomial hash calculation
     public static boolean isListPalindrome_2(ListNode<Integer> l) {
-        ListNode<Integer> p1 = l;
-        ListNode<Integer> p2 = l;
+        ListNode<Integer> slow = l;
+        ListNode<Integer> fast = l;
 
-        int sum = 0;
-        while (p2.next != null && p2.next.next != null) {
-            sum += p1.value;
-            p2 = p2.next.next;
-            p1 = p1.next;
-
+        int idx = 0;
+        long hash = 0;
+        while (fast.next != null) {
+            hash += calcHash(idx++, slow.value);
+            fast = fast.next;
+            slow = slow.next;
+            if (fast.next != null) fast = fast.next;
         }
-        if (p2.next != null) sum += p1.value;
+        if (idx % 2 != 0 && slow.next != null) slow = slow.next;
 
-        p1 = p1.next;
-        while (p1 != null) {
-            sum -= p1.value;
-            p1 = p1.next;
-
+        while (slow != null) {
+            hash -= calcHash(--idx, slow.value);
+            slow = slow.next;
         }
-        return sum == 0;
+        return hash == 0;
+    }
+
+    private static long calcHash(int idx, int v) {
+        return Math.abs(v * (long) Math.pow(31, idx));
     }
 
     private static class ListNode<T> {

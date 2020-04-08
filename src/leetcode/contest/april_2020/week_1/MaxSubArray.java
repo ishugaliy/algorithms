@@ -1,4 +1,4 @@
-package leetcode.contest.april_2020;
+package leetcode.contest.april_2020.week_1;
 
 // https://leetcode.com/explore/challenge/card/30-day-leetcoding-challenge/528/week-1/3285/
 public class MaxSubArray {

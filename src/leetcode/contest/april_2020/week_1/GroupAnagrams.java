@@ -1,4 +1,4 @@
-package leetcode.contest.april_2020;
+package leetcode.contest.april_2020.week_1;
 
 import java.util.*;
 
