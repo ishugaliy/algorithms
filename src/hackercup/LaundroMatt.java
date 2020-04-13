@@ -1,11 +1,10 @@
-package fb.hackercup;
+package hackercup;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.PriorityQueue;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 // https://www.facebook.com/hackercup/problem/1611251319125133/
