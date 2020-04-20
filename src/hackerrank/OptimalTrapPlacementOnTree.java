@@ -3,6 +3,7 @@ package hackerrank;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.*;
 
 // https://www.hackerrank.com/contests/projector-algo-base-8-hw-5-zpun0n6c/challenges/optimal-trap-placement-tree
@@ -35,7 +36,6 @@ public class OptimalTrapPlacementOnTree {
         tree.add(8, new ArrayList<>(Arrays.asList(7)));
         System.out.println(maxTrapValue(tree, values, new boolean[values.length]));
 
-
         // CASE #3: 10
         values = new int[]{0, 3, 10, 3, 3};
         tree = new ArrayList<>();
@@ -55,6 +55,19 @@ public class OptimalTrapPlacementOnTree {
         tree.add(2, new ArrayList<>(Arrays.asList(1, 3, 4)));
         tree.add(3, new ArrayList<>(Arrays.asList(2)));
         tree.add(4, new ArrayList<>(Arrays.asList(2)));
+        System.out.println(maxTrapValue(tree, values, new boolean[values.length]));
+
+        // CASE #5: 132
+        values = new int[]{0, 2, -3, 1, 30, 1, 1, 100};
+        tree = new ArrayList<>();
+        tree.add(0, Collections.emptyList());
+        tree.add(1, new ArrayList<>(Arrays.asList(2, 3)));
+        tree.add(2, new ArrayList<>(Arrays.asList(1)));
+        tree.add(3, new ArrayList<>(Arrays.asList(1, 4)));
+        tree.add(4, new ArrayList<>(Arrays.asList(3, 5)));
+        tree.add(5, new ArrayList<>(Arrays.asList(4, 6)));
+        tree.add(6, new ArrayList<>(Arrays.asList(5, 7)));
+        tree.add(7, new ArrayList<>(Arrays.asList(6)));
         System.out.println(maxTrapValue(tree, values, new boolean[values.length]));
 
         System.exit(0);
@@ -77,10 +90,7 @@ public class OptimalTrapPlacementOnTree {
         long value = 0;
         for (int i = 1; i < tree.size(); i++) {
             if (!visited[i]) {
-                value += Math.max(
-                        dfs(tree, i, false, values, Arrays.copyOf(visited, visited.length)),
-                        dfs(tree, i, true, values, visited)
-                );
+                dfs(tree, i, false, values, visited);
             }
         }
         return value;
@@ -88,13 +98,24 @@ public class OptimalTrapPlacementOnTree {
 
     private static long dfs(List<List<Integer>> tree, Integer node,
                             boolean withTrap, int[] values, boolean[] visited) {
-        if (visited[node] || values[node] < 0) return 0;
+        if (visited[node] || values[node] <= 0) {
+            if (values[node] <= 0) visited[node] = true;
+            return 0;
+        }
 
         visited[node] = true;
-        long value = withTrap ? values[node] : 0;
+        long value = 0;
         List<Integer> children = tree.get(node);
         for (Integer child : children) {
-            value += dfs(tree, child, !withTrap, values, visited);
+            if (withTrap) {
+                value += dfs(tree, child, false, values, visited) + values[node];
+            } else {
+                value += Math.max(
+                        dfs(tree, child, false, values, Arrays.copyOf(visited, visited.length)) + values[node],
+                        dfs(tree, child, true, values, visited)
+                );
+            }
+//            visited[child] = true;
         }
         return value;
     }
