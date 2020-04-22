@@ -3,27 +3,38 @@ package hackerrank;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.*;
 
 // https://www.hackerrank.com/contests/projector-algo-base-8-hw-5-zpun0n6c/challenges/optimal-trap-placement-tree
 @SuppressWarnings("all")
 public class OptimalTrapPlacementOnTree {
 
+    private static List<List<Integer>> tree;
+    private static int[] values;
+    private static int[] parents;
+
+    private static Map<Boolean, Long[]> dp = new HashMap<>();
+
     public static void main(String[] args) {
         // CASE #1: 14
-        int[] values = {0, 4, 5, 6, 4, 5};
-        List<List<Integer>> tree = new ArrayList<>();
+        values = new int[]{0, 4, 5, 6, 4, 5};
+        dp.put(true, new Long[values.length]);
+        dp.put(false, new Long[values.length]);
+        parents = new int[values.length];
+        tree = new ArrayList<>();
         tree.add(0, Collections.emptyList());
         tree.add(1, new ArrayList<>(Arrays.asList(2)));
         tree.add(2, new ArrayList<>(Arrays.asList(1, 3, 4)));
         tree.add(3, new ArrayList<>(Arrays.asList(2, 5)));
         tree.add(4, new ArrayList<>(Arrays.asList(2)));
         tree.add(5, new ArrayList<>(Arrays.asList(3)));
-        System.out.println(maxTrapValue(tree, values, new boolean[values.length]));
+        System.out.println(maxTrapValue());
 
         // CASE #2: 16
         values = new int[]{0, 2, 3, 4, -5, 4, -6, 5, 7};
+        dp.put(true, new Long[values.length]);
+        dp.put(false, new Long[values.length]);
+        parents = new int[values.length];
         tree = new ArrayList<>();
         tree.add(0, Collections.emptyList());
         tree.add(1, new ArrayList<>(Arrays.asList(3)));
@@ -34,31 +45,39 @@ public class OptimalTrapPlacementOnTree {
         tree.add(6, new ArrayList<>(Arrays.asList(4, 7)));
         tree.add(7, new ArrayList<>(Arrays.asList(6, 8)));
         tree.add(8, new ArrayList<>(Arrays.asList(7)));
-        System.out.println(maxTrapValue(tree, values, new boolean[values.length]));
+        System.out.println(maxTrapValue());
 
         // CASE #3: 10
         values = new int[]{0, 3, 10, 3, 3};
+        dp.put(true, new Long[values.length]);
+        dp.put(false, new Long[values.length]);
+        parents = new int[values.length];
         tree = new ArrayList<>();
         tree.add(0, Collections.emptyList());
         tree.add(1, new ArrayList<>(Arrays.asList(2)));
         tree.add(2, new ArrayList<>(Arrays.asList(1, 3, 4)));
         tree.add(3, new ArrayList<>(Arrays.asList(2)));
         tree.add(4, new ArrayList<>(Arrays.asList(2)));
-
-        System.out.println(maxTrapValue(tree, values, new boolean[values.length]));
+        System.out.println(maxTrapValue());
 
         // CASE #4: 9
         values = new int[]{0, 3, 8, 3, 3};
+        dp.put(true, new Long[values.length]);
+        dp.put(false, new Long[values.length]);
+        parents = new int[values.length];
         tree = new ArrayList<>();
         tree.add(0, Collections.emptyList());
         tree.add(1, new ArrayList<>(Arrays.asList(2)));
         tree.add(2, new ArrayList<>(Arrays.asList(1, 3, 4)));
         tree.add(3, new ArrayList<>(Arrays.asList(2)));
         tree.add(4, new ArrayList<>(Arrays.asList(2)));
-        System.out.println(maxTrapValue(tree, values, new boolean[values.length]));
+        System.out.println(maxTrapValue());
 
         // CASE #5: 132
         values = new int[]{0, 2, -3, 1, 30, 1, 1, 100};
+        dp.put(true, new Long[values.length]);
+        dp.put(false, new Long[values.length]);
+        parents = new int[values.length];
         tree = new ArrayList<>();
         tree.add(0, Collections.emptyList());
         tree.add(1, new ArrayList<>(Arrays.asList(2, 3)));
@@ -68,63 +87,108 @@ public class OptimalTrapPlacementOnTree {
         tree.add(5, new ArrayList<>(Arrays.asList(4, 6)));
         tree.add(6, new ArrayList<>(Arrays.asList(5, 7)));
         tree.add(7, new ArrayList<>(Arrays.asList(6)));
-        System.out.println(maxTrapValue(tree, values, new boolean[values.length]));
+        System.out.println(maxTrapValue());
+
+
+        // CASE #6: 0
+        values = new int[]{0, -1, -100, -2, -3};
+        dp.put(true, new Long[values.length]);
+        dp.put(false, new Long[values.length]);
+        parents = new int[values.length];
+        tree = new ArrayList<>();
+        tree.add(0, Collections.emptyList());
+        tree.add(1, new ArrayList<>(Arrays.asList(2, 3)));
+        tree.add(2, new ArrayList<>(Arrays.asList(1)));
+        tree.add(3, new ArrayList<>(Arrays.asList(1, 4)));
+        tree.add(4, new ArrayList<>(Arrays.asList(3)));
+        System.out.println(maxTrapValue());
+
+
+        // CASE #7: 2499950000
+        values = new int[100_000];
+        dp.put(true, new Long[values.length]);
+        dp.put(false, new Long[values.length]);
+        parents = new int[values.length];
+        tree = new ArrayList<>();
+        tree.add(0, Collections.emptyList());
+        for (int i = 0; i < values.length - 1; i++) {
+            values[i] = i;
+            tree.add(i, Arrays.asList(i + 1));
+        }
+        System.out.println(maxTrapValue());
+
 
         System.exit(0);
 
         // read from input
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             int _n = Integer.parseInt(reader.readLine());
-            int[] _values = readValues(_n, reader.readLine());
-            List<List<Integer>> _tree = initTree(_n);
-            readTree(_tree, reader);
+            values = readValues(_n, reader.readLine());
+            tree = initTree(_n);
+            readTree(tree, reader);
 
-            System.out.println(maxTrapValue(_tree, _values, new boolean[_values.length]));
+            dp.put(true, new Long[_n + 1]);
+            dp.put(false, new Long[_n + 1]);
+            parents = new int[_n + 1];
+
+            System.out.println(maxTrapValue());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static long maxTrapValue(List<List<Integer>> tree, int[] values, boolean[] visited) {
-        // traverse tree for all graphes starting with and witout trap
-        long value = 0;
-        for (int i = 1; i < tree.size(); i++) {
-            if (!visited[i]) {
-                dfs(tree, i, false, values, visited);
+    public static long maxTrapValue() {
+        LinkedList<Integer> sorted = topologicalSort();
+        while (!sorted.isEmpty()) {
+            Integer node = sorted.pollLast();
+
+            long noTrap = 0;
+            long withTrap = values[node] >= 0 ? values[node] : 0;
+
+            List<Integer> children = tree.get(node);
+            for (Integer child : children) {
+                if (child != parents[node]) {
+                    noTrap += Math.max(
+                            dp.get(true)[child],
+                            dp.get(false)[child]
+                    );
+                    withTrap += dp.get(false)[child];
+                }
             }
+
+            dp.get(true)[node] = withTrap;
+            dp.get(false)[node] = noTrap;
         }
-        return value;
+        return Math.max(
+                dp.get(true)[1],
+                dp.get(false)[1]
+        );
     }
 
-    private static long dfs(List<List<Integer>> tree, Integer node,
-                            boolean withTrap, int[] values, boolean[] visited) {
-        if (visited[node] || values[node] <= 0) {
-            if (values[node] <= 0) visited[node] = true;
-            return 0;
-        }
+    private static LinkedList<Integer> topologicalSort() {
+        LinkedList<Integer> dfs = new LinkedList<>();
+        LinkedList<Integer> sort = new LinkedList<>();
 
-        visited[node] = true;
-        long value = 0;
-        List<Integer> children = tree.get(node);
-        for (Integer child : children) {
-            if (withTrap) {
-                value += dfs(tree, child, false, values, visited) + values[node];
-            } else {
-                value += Math.max(
-                        dfs(tree, child, false, values, Arrays.copyOf(visited, visited.length)) + values[node],
-                        dfs(tree, child, true, values, visited)
-                );
+        dfs.addLast(1);
+        while (!dfs.isEmpty()) {
+            Integer node = dfs.pollLast();
+            List<Integer> children = tree.get(node);
+            for (Integer child : children) {
+                if (child != parents[node]) {
+                    dfs.addLast(child);
+                    parents[child] = node;
+                }
             }
-//            visited[child] = true;
+            sort.addLast(node);
         }
-        return value;
+        return sort;
     }
 
-    private static int[] readValues(int n, String readLine) {
+    private static int[] readValues(int n, String line) {
         int[] v = new int[n + 1];
-        String[] raw = readLine.split(" ");
-        for (int i = 0; i < raw.length; i++) {
-            v[i + 1] = Integer.parseInt(raw[i]);
+        String[] raw = line.split(" ");
+        for (int i = 1; i <= raw.length; i++) {
+            v[i] = Integer.parseInt(raw[i - 1]);
         }
         return v;
     }
@@ -148,4 +212,5 @@ public class OptimalTrapPlacementOnTree {
             tree.get(b).add(a);
         }
     }
+
 }
